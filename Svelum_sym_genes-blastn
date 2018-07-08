@@ -1,0 +1,17 @@
+#!/bin/sh
+#SBATCH --mail-user=shelbirussell@fas.harvard.edu
+#SBATCH -J blst-Svelum_sym_genes-blastn
+#SBATCH -o Svelum_sym_genes-blastn.out
+#SBATCH -e Svelum_sym_genes-blastn.err
+#SBATCH -p general
+#SBATCH -n 16
+#SBATCH --mem=32000
+#SBATCH -t 4320
+
+module load blast/2.2.29+.bib-fasrc01
+
+BLASTDB=/n/regal/cavanaugh_lab/shelbirussell/blast_db/nt
+
+blastn -db $BLASTDB/nt -query Svsym_top4_nt.fasta -task dc-megablast -evalue 0.0001 -num_threads 16 \
+-outfmt '6 qseqid sallseqid salltitles pident length mismatch gapopen qstart qend sstart send evalue bitscore' \
+-out Svelum_sym_genes_cds_blastn-hits.txt
