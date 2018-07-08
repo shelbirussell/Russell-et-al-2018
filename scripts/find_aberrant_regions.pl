@@ -1,6 +1,8 @@
 use strict ;
 use warnings ;
 
+## Usage: perl find_aberrant_regions.pl PJRI36gillMitoSym_coverage_by_site.txt
+
 my$in = $ARGV[0] ;
 my$out1 = $in ;
 my$out2 = $in ;
